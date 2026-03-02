@@ -4,8 +4,17 @@ using System.Text;
 
 namespace DocumentationBenchmark.Utilities
 {
+    /// <summary>
+    /// Provides methods for sanitizing strings.
+    /// </summary>
     public static class StringSanitizer
     {
+        /// <summary>
+        /// Normalizes whitespace in the given input string by replacing multiple whitespace characters with a single space.
+        /// </summary>
+        /// <param name="input">The input string to normalize.</param>
+        /// <returns>A string with normalized whitespace.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the input string is null.</exception>
         public static string NormalizeWhitespace(string input)
         {
             if (input is null)
@@ -37,6 +46,13 @@ namespace DocumentationBenchmark.Utilities
             return builder.ToString().Trim();
         }
 
+        /// <summary>
+        /// Converts a phrase into a URL-friendly slug.
+        /// </summary>
+        /// <param name="phrase">The phrase to convert into a slug.</param>
+        /// <param name="maxLength">The maximum length of the slug. Must be at least 5.</param>
+        /// <returns>A URL-friendly slug derived from the phrase.</returns>
+        /// <exception cref="ArgumentException">Thrown when maxLength is less than 5.</exception>
         internal static string ToSlug(string phrase, int maxLength = 50)
         {
             if (string.IsNullOrWhiteSpace(phrase))
@@ -71,6 +87,11 @@ namespace DocumentationBenchmark.Utilities
             return slug.ToString().TrimEnd('-');
         }
 
+        /// <summary>
+        /// Checks if the input contains unsafe characters.
+        /// </summary>
+        /// <param name="input">The input span of characters to check.</param>
+        /// <returns><c>true</c> if unsafe characters are found; otherwise, <c>false</c>.</returns>
         private static bool ContainsUnsafeCharacters(ReadOnlySpan<char> input)
         {
             for (int i = 0; i < input.Length; i++)
@@ -82,9 +103,22 @@ namespace DocumentationBenchmark.Utilities
         }
     }
 
+    /// <summary>
+    /// Exception thrown when a sanitization error occurs.
+    /// </summary>
     public class SanitizationException : Exception
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SanitizationException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message">The error message that explains the reason for the exception.</param>
         public SanitizationException(string message) : base(message) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SanitizationException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">The error message that explains the reason for the exception.</param>
+        /// <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
         public SanitizationException(string message, Exception inner) : base(message, inner) { }
     }
 }
