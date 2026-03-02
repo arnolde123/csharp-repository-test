@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,8 +9,15 @@ using RepositoryPattern.models;
 
 namespace RepositoryPattern
 {
+    /// <summary>
+    /// The main class for the Repository Pattern application.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// The entry point of the application.
+        /// </summary>
+        /// <param name="args">An array of command-line arguments.</param>
         static void Main(string[] args)
         {
             // Test the pattern
